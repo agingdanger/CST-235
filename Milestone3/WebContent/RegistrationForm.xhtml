@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<!-- This is the registration form that is(so far) the initial page -->
+<body> 
+	<ui:composition template="layouts/commonLayout.xhtml">
+		
+		<ui:define name="header" align="center">
+		
+		<h3>Registration Page</h3>
+		
+		</ui:define>
+		
+		<ui:define name="content">
+		
+			<h:form>
+				First Name:<h:inputText value="#{user.firstName}" /><br></br>  
+				Last Name:<h:inputText value="#{user.lastName}" /><br></br>
+				Username:<h:inputText value="#{user.userName}" /><br></br>
+				Password:<h:inputText value="#{user.password}" /><br></br>
+				Email:<h:inputText value="#{user.email}" /><br></br>
+				Phone:<h:inputText value="#{user.phone}" /><br></br><h:message/>
+				<h:commandButton action="#{userController.userController(user)}" value="Submit" />
+		 	</h:form>
+		 	<h:messages/>
+		
+		</ui:define>
+
+	
+	</ui:composition>
+	
+
+</body> 
+</html>
