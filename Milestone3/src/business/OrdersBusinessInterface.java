@@ -11,4 +11,5 @@ public interface OrdersBusinessInterface
 	public List<Order> getOrders();
 	public void setOrders(List<Order> orders);
 	public void test();
+	public Order getOrder(int id);
 }

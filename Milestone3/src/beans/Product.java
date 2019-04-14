@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class Product {
 	
-	//Productint ID;
+	int ID;
 	String productName;
 	String productDescription;
 	float price;
@@ -16,7 +16,7 @@ public class Product {
 	
 	
 	public Product() {
-		//this.ID = this.getID();
+		this.ID = this.getID();
 		this.productName = this.getProductName();
 		this.productDescription = this.getProductDescription();
 		this.price = this.getPrice();
@@ -30,12 +30,12 @@ public class Product {
 		this.photo = photo;
 	}
 	
-//	public int getID() {
-//		return ID;
-//	}
-//	public void setID(int ID) {
-//		this.ID = ID;
-//	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int ID) {
+		this.ID = ID;
+	}
 	public String getProductName() {
 		return productName;
 	}

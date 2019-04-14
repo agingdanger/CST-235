@@ -22,10 +22,11 @@ import business.OrdersBusinessInterface;
 public class FormController {
 	@Inject
 	OrdersBusinessInterface service;
+
 	
 	@EJB
 	MyTimerService timer;
-	
+
 	//@EJB
 	//OrdersBusinessService serve;
 
@@ -34,8 +35,11 @@ public class FormController {
 		timer.setTimer(10000);
 		
 		//Call business service(for testing only and to demo CDI)
-		service.test();
+		service.getOrders();
 		
+		//service.getOrder(int id);
+		getAllOrders();
+		insertOrder();
 		//serve.test();
 		
 		//forward to test response view along with the user managed bean
@@ -63,25 +67,64 @@ public class FormController {
 		return service;
 	}
 	
-
+	private void insertOrder() {
+		Connection conn = null;
+		String url = "jdbc:postgresql://localhost:5432/testapp";
+		String username = "postgres";
+		String password = "root";
+		String sql = "INSERT INTO testapp.testapp.Orders(ORDER_NO, PRODUCT_NAME, PRICE, QUANTITY) VALUES('001122334455', 'This was inserted new', 25.0 , 4)";
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			System.out.println("Server Connection Success!");
+		}
+		catch(SQLException e) {
+			System.out.println("Potential Connection Issue");
+			e.printStackTrace();
+		}
+		finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				}
+				catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
-//	private void getAllOrders() {
-//		
-//		Connection conn = null;
-//		String url = "jdbc:postgresql://localhost:5432/testapp";
-//		String username = "postgres";
-//		String password = "root";
-//		String sql = "SELECT * FROM testapp.testapp.Orders";
-//		try {
-//			conn = DriverManager.getConnection(url, username, password);
-//			Statement stmt = conn.createStatement();
-//			ResultSet res = stmt.executeQuery(sql);
-////			while(res.next()) {
-////				System.out.println(String.format("ID is %d for Product %s at a price of %f", res.g));
-////			}
-//		}
-//		catch(SQLException e){
-//			System.out.println("Failure!");
-//		}
-	//}
+	
+	private void getAllOrders() {
+		
+		Connection conn = null;
+		String url = "jdbc:postgresql://localhost:5432/testapp";
+		String username = "postgres";
+		String password = "root";
+		String sql = "SELECT * FROM testapp.testapp.Orders";
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+			Statement stmt = conn.createStatement();
+			ResultSet res = stmt.executeQuery(sql);
+			while(res.next()) {
+				System.out.println(String.format("ID is %d for Product %s at a price of %f", res.getInt("ID"), res.getString("PRODUCT_NAME"), res.getFloat("PRICE")));
+			}
+			res.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			//System.out.println("Failure!");
+		}
+		finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				}
+				catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }

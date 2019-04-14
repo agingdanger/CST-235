@@ -27,16 +27,16 @@ public class AnotherOrdersBusinessService implements OrdersBusinessInterface {
      */
     public AnotherOrdersBusinessService() 
     {
-    	orders.add(new Order("000000000", "This is product 0", (float)1.00, 12));
-		orders.add(new Order("000000001", "This is product 1", (float)1.00, 13));
-		orders.add(new Order("000000002", "This is product 2", (float)1.00, 15));
-		orders.add(new Order("000000003", "This is product 3", (float)1.00, 16));
-		orders.add(new Order("000000004", "This is product 4", (float)1.00, 17));
-		orders.add(new Order("000000005", "This is product 5", (float)1.00, 18));
-		orders.add(new Order("000000006", "This is product 6", (float)1.00, 19));
-		orders.add(new Order("000000007", "This is product 7", (float)1.00, 10));
-		orders.add(new Order("000000008", "This is product 8", (float)1.00, 10));
-		orders.add(new Order("000000009", "This is product 9", (float)1.00, 1));
+//    	orders.add(new Order("000000000", "This is product 0", (float)1.00, 12));
+//		orders.add(new Order("000000001", "This is product 1", (float)1.00, 13));
+//		orders.add(new Order("000000002", "This is product 2", (float)1.00, 15));
+//		orders.add(new Order("000000003", "This is product 3", (float)1.00, 16));
+//		orders.add(new Order("000000004", "This is product 4", (float)1.00, 17));
+//		orders.add(new Order("000000005", "This is product 5", (float)1.00, 18));
+//		orders.add(new Order("000000006", "This is product 6", (float)1.00, 19));
+//		orders.add(new Order("000000007", "This is product 7", (float)1.00, 10));
+//		orders.add(new Order("000000008", "This is product 8", (float)1.00, 10));
+//		orders.add(new Order("000000009", "This is product 9", (float)1.00, 1));
     }
 
 	/**
@@ -53,6 +53,12 @@ public class AnotherOrdersBusinessService implements OrdersBusinessInterface {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	@Override
+	public Order getOrder(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
