@@ -1,12 +1,14 @@
 package beans;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.xml.bind.annotation.XmlRootElement;
 @ManagedBean
 @ViewScoped
 @XmlRootElement(name = "Order")
-public class Order {
+public class Order implements Serializable {
 
 	
 	int ID = 0;

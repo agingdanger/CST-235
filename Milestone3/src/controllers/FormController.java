@@ -12,10 +12,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
+import beans.Order;
 import beans.User;
 import business.MyTimerService;
 import business.OrdersBusinessInterface;
 //import business.OrdersBusinessService;
+
 
 @ManagedBean
 @ViewScoped
@@ -126,5 +129,16 @@ public class FormController {
 				}
 			}
 		}
+	}
+	
+	public String onSendOrder() {
+		Order order =  new Order();
+		order.setOrderNo("99");
+		order.setPrice(99);
+		order.setProductName("cheese");
+		order.setQuantity(99);
+		
+		service.sendOrder(order);
+		return "OrderResponse.xhtml";
 	}
 }

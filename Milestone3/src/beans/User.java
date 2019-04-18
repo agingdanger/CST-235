@@ -1,11 +1,13 @@
 package beans;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.SessionScoped;
 import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @ApplicationScoped
 @ManagedBean

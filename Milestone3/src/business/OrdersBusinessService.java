@@ -2,11 +2,22 @@ package business;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.jms.Queue;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+
 import beans.Order;
 import data.OrdersDataService;
 
@@ -21,7 +32,14 @@ import data.OrdersDataService;
 @Alternative
 public class OrdersBusinessService implements OrdersBusinessInterface {
 
+	@Resource(mappedName="java:/ConnectionFactory")
+	private ConnectionFactory connectionFactory;
+
+	@Resource(mappedName="java:/jms/queue/Order")
+	private Queue queue;
+
 	List<Order> orders = new ArrayList<Order>();
+	
 	@EJB
 	OrdersDataService service;
     /**
@@ -59,7 +77,31 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+	
+	public void sendOrder(Order order) {
+		
+		// Send a Message for an Order
+				try 
+				{
+					
+					Connection connection = connectionFactory.createConnection();
+					Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+					MessageProducer messageProducer = session.createProducer((Destination) queue);
+					ObjectMessage message2 = session.createObjectMessage();
+					TextMessage message1 = session.createTextMessage();
+					message2.setObject(order);
+					message1.setText("This is test message");
+					messageProducer.send(message1);
+					messageProducer.send(message2);
+					connection.close();
+					
+				} 
+				catch (JMSException e) 
+				{
+					e.printStackTrace();
+				}
 
+	}
 
 
 
