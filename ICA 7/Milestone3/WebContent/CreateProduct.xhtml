@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+
+<body> 
+	<ui:composition template="layouts/commonLayout.xhtml">
+		
+		<ui:define name="header" align="center">
+		
+		<h3>Create A Product!</h3>
+		
+		</ui:define>
+		
+		<ui:define name="content">
+		
+			<h:form>
+				
+				Product Name:<h:inputText value="#{product.productName}" /><br></br>  
+				Product Description:<h:inputText value="#{product.productDescription}" /><br></br>
+				Product Price:<h:inputText value="#{product.price}" /><br></br>
+				Product Picture:<h:inputText value="#{product.photo}" /><br></br> <h:message/>			
+				<h:commandButton action="#{productController.productController(product)}" value ="Submit" />
+		 	</h:form>
+		 	<h:messages/>
+		
+		</ui:define>
+
+	
+	</ui:composition>
+</body> 
+</html>
