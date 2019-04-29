@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+
+			<h:form>
+				ID Search:<h:inputText value = "#{searchID.ID}"></h:inputText><br></br>
+				<h:commandButton action = "#{productController.findByID(searchID.ID)}" value = "Search"></h:commandButton>
+			</h:form>
+			<h:form>
+				<h:inputHidden value="#{product.ID}" /><br></br> 
+				Product Name:<h:inputText value="#{product.productName}" /><br></br>  
+				Product Description:<h:inputText value="#{product.productDescription}" /><br></br>
+				Product Price:<h:inputText value="#{product.price}" /><br></br>
+				<h:form>
+				<h:commandButton action="#{productController.updateProduct(product)}" value="Update" />
+				<h:commandButton action="#{productController.deleteProduct(product)}" value="Delete" />
+				</h:form>
+				
+				
+				
+				
+		 	</h:form>
+</body> 
+</html>
